@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      body {
+        background: url("./images/bg0.jpg") no-repeat left top fixed;
+        background-size: cover;
+        display: flex;
+        /*         justify-content: center;
+        align-items: center; */
+        min-height: 100vh;
+      }
+    </style>
+  </head>
+  <body id="content">
+    <button onclick="jc()">주축 가운데 정렬!</button>
+    <button onclick="as()">교차축 가운데 정렬!</button>
+    <script>
+      const contentl = document.getElementById("content");
+      function jc() {
+        contentl.style.justifyContent = "center";
+      }
+      function as() {
+        contentl.style.alignItems = "center";
+      }
+    </script>
+  </body>
+</html>
