@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="css/input.css">
+	<link rel="stylesheet" href="css/list.css">
+  <title>여행 준비물 점검 목록</title>
+</head>
+<body>
+	<div id="wrapper">
+		<h2>여행 준비물 점검 목록</h2>
+		<form>
+			<input type="text" id="item" autofocus="true" autocomplete="off"/>
+			<button type="button" id="add" class="addBtn">추가</button>
+		</form>
+		<div id="itemList"></div>
+
+	</div>
+	<script>
+			let itemList = [];
+			let addBtn = document.querySelector("#add");
+			addBtn.addEventListener("click", addList);
+			getItems();
+			function addList() {
+					let item = document.querySelector("#item").value;
+
+					if (item !== null) {
+							itemList.push(item);
+							document.querySelector("#item").value = "";
+							document.querySelector("#item").focus();
+					}
+					localStorage.setItem("storageList", JSON.stringify(itemList));
+					showList();
+			}
+
+			function getItems() {
+				let storedData = localStorage.getItem("storageList");
+				if(storedData != null) itemList = JSON.parse(storedData);
+				showList();
+			}
+
+			function showList() {
+					let list = "<ul>";
+					for (let i = 0; i < itemList.length; i++) {
+							list += "<li>" + itemList[i] + "<span class = 'close' id = " + i + "> X </span></li>"
+					}
+					list += "</ul>";
+					document.querySelector("#itemList").innerHTML = list;
+					const remove = document.querySelectorAll(".close");
+					for (let i = 0; i < remove.length; i++) {
+							remove[i].addEventListener("click", removeList);
+					}
+			}
+
+			function removeList() {
+					const id = this.getAttribute("id");
+					itemList.splice(id, 1);
+					localStorage.setItem('storageList', JSON.stringify(itemList));
+					showList();
+			}
+	</script>
+</body> 
+  
+  </html>
