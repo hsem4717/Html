@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>로또 추첨기</title>
+	<body>
+    <header>
+        <h2 class="title">로또 추첨기</h2>
+    </header>
+   <div class="content">
+            <div class="rottoNum_wrap">
+                <div class="ball" id="num1"><span>?</span></div>
+                <div class="ball" id="num2"><span>?</span></div>
+                <div class="ball" id="num3"><span>?</span></div>
+                <div class="ball" id="num4"><span>?</span></div>
+                <div class="ball" id="num5"><span>?</span></div>
+                <div class="ball" id="num6"><span>?</span></div>
+                <div class="plus">+</div>
+                <div class="ball bonus" id="num7"><span>?</span></div>
+                <div class="btn_wrap">
+                    <input class="btn" type="button" value="추첨하기" onclick="getNum()">
+                </div>
+            </div>
+        </div>
+   
+		<script>
+			function getNum(){
+  			let ball = document.getElementsByClassName("ball");
+			let rottoNum = [];
+            let num = [];
+				for(let i=0;i<ball.length;i++){
+					ball[i].innerHTML="<span>?</span>";
+					rottoNum[i] = Math.floor(Math.random()*45)+1
+                    if(rottoNum[i]==num[1]||rottoNum[i]==num[2]||rottoNum[i]==num[3]||rottoNum[i]==num[4]||rottoNum[i]==num[5]||rottoNum[i]==num[6]||rottoNum[i]==num[0]){
+                        i--; 
+                    }
+		            else{
+			            ball[i].innerHTML = "<span>"+rottoNum[i]+"</span>";
+		            }
+                    num[i]=rottoNum[i];
+				}
+			}
+		</script>
+	</body>
+</html>
