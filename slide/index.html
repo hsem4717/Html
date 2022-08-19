@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <title>Slideshow</title>
+    <link rel="stylesheet" href="css/slideshow.css">
+    <style>
+        .wrapper {
+            width: 600px;
+            margin: 0 auto;
+            position: relative;
+            background-color: #ccc;
+            text-align: center;
+        }
+
+        #container {
+            position: absolute;
+        }
+
+        #container>img {
+            width: 100%;
+            float: left;
+        }
+
+        button {
+            position: absolute;
+            height: 100%;
+            top: 0;
+            border: none;
+            padding: 20px;
+            background-color: transparent;
+            color: #000;
+            font-weight: 800;
+            font-size: 24px;
+            opacity: 0.5;
+        }
+
+        #prev {
+            left: 0;
+        }
+
+        #next {
+            right: 0;
+        }
+
+        button:hover {
+            background-color: #222;
+            color: #fff;
+            opacity: 0.6;
+            cursor: pointer;
+        }
+
+        button:focus {
+            outline: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div id="container">
+            <img src="images/pic-1.jpg">
+            <img src="images/pic-2.jpg">
+            <img src="images/pic-3.jpg">
+            <img src="images/pic-4.jpg">
+            <button id="prev">&lang;</button>
+            <button id="next">&rang;</button>
+        </div>
+    </div>
+    <script>
+        let slides = document.querySelectorAll("img");
+        let prev = document.querySelector("#prev");
+        let next = document.querySelector("#next");
+        let current = 0;
+        showSlide(current);
+        prev.onclick = prevSlide; 
+        next.onclick = nextSlide; 
+        function showSlide(k) {
+            for (var i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[k].style.display = "block";
+        }
+        function prevSlide() {
+            if (current > 0) current -= 1;
+            else current = slides.length - 1;
+            showSlide(current);
+        }
+        function nextSlide() {
+            if (current < slides.length - 1) current += 1;
+            else current = 0;
+            showSlide(current);
+        }
+    </script>
+</body>
+
+</html>
